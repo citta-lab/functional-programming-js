@@ -58,6 +58,17 @@ const p6 = new Person('megha', 'p', 'IND', 1991);
    const filteredPeople = people.filter(bornInUS).map(names).join(' and ');
    console.log(filteredPeople); // nick and jack
 
+   /**
+    * Filter HOC Function with more Compostion:
+    */
+
+   const usBorn = person => person.country === 'US';
+   const eightyBorn = person => person.dob > 1980;
+   const peopleName = person => person.firstName;
+   
+   const usEightyBornPeople = people.filter(usBorn).filter(eightyBorn).map(peopleName).join(' and ');
+   console.log(usEightyBornPeople); // nick and jack 
+
 
 
 
