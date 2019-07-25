@@ -8,6 +8,8 @@
 4. `forEach` is a functional preferred way of looping than other options. Exampple: `array.forEach()`.
 5. Use functional methods `call` and `apply` instead of `this`. These functional methods are part of functional prototype. 
 6. Unlike many other progamming language javascript cant decalre `private` variables to avoid mutability, Hence use of `closure` can be used to achive the same. `Modular pattern` is one of best example of closure.
+7. functional programming is `SQL` like structure, It extracts away the inner details how it interacts with the data but lets you focus on writing abstraction.
+8. Array, Tree, Promise, Stream are `Functors` becuase we can apply map on it & Stream, Promise are `Monands` as well becuase we can apply flatmap on it. 
 
 ## Higher Order Functions 
 By definition, functions can be passed as another functions arguments. 
@@ -39,7 +41,7 @@ console.log(addResult);
 ```
 
 ## Functional Methods ( call, apply )
-`call` and `apply` are prototype property of Functions. which is used in favour of `this` in functional programming. 
+`call` and `apply` are prototype property of Functions. which is used in favour of `this` in functional programming. Example script is [here](https://github.com/citta-lab/functional-programming-js/blob/master/examples/negateFunction.js).
 ```javascript 
 function negate(func){
     return function(){
@@ -118,3 +120,19 @@ var inUS = person => person.country === 'US';
 
 findPeopleHOC(people, inUS, console.log);
 ```
+Complete example of HOC with more [details](https://github.com/citta-lab/functional-programming-js/blob/master/examples/findPeopleInUS.js) and another example is [here](https://github.com/citta-lab/functional-programming-js/blob/master/examples/findStudentsBy.js).
+
+1.4 HOC with map, reduce and filter.
+```javascript 
+const usBorn = person => person.country === 'US';
+const eightyBorn = person => person.dob > 1980;
+const peopleName = person => person.firstName;
+   
+const usEightyBornPeople = people.filter(usBorn).filter(eightyBorn).map(peopleName).join(' and ');
+console.log(usEightyBornPeople); // nick and jack 
+```
+
+## Functor & Monands 
+
+If we can apply `map` functionality on any datastructure then they are `Functors`. Example: Array, Tree, Stream and Promises are functors. If we can apply `flatmap` on any of these then they are also called `Monands`. i.e Streams and Promises are monads as well. 
+

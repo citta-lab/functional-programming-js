@@ -69,6 +69,52 @@ const p6 = new Person('megha', 'p', 'IND', 1991);
    const usEightyBornPeople = people.filter(usBorn).filter(eightyBorn).map(peopleName).join(' and ');
    console.log(usEightyBornPeople); // nick and jack 
 
+   /**
+    * Map Implementation 
+    * Syntax from MDN: arr.map(function callback(currentValue[, index[, array]]) 
+    * Clue: Takes an array, do it's magic and returns new array.
+    */
+
+    // First Implementation 
+    const map = (arr, fn) => {  
+        const length = arr.length;
+        const result = new Array(length);
+
+        let i=-1;
+        while(++i < length){
+            result[i] = fn(arr[i], i, arr);
+        }
+        return result;
+    }
+
+    // call back function
+    const fn = n => n*n;
+    // testing the map functionality 
+    let squareTestOne = map([2,4,1,5], fn);
+    console.log(squareTestOne); // [ 4, 16, 1, 25 ];
+
+   
+    // Second Implementaion 
+    Array.prototype.myMap = function(callback) {
+        const length = this.length;
+        const result = new Array(length);
+
+        let i=-1;
+        while(++i < length){
+            result[i] = callback(this[i], i, this);
+        }
+
+        return result;
+    }
+
+    const squareTestTwo = [2,4,1,5].myMap((n) => n*n);
+    console.log(squareTestTwo);
+
+
+
+
+
+
 
 
 
